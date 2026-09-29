@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Customer Churn Prediction</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body>
+
+<div class="main-container">
+
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="page-header">
+
+        <h1>Customer Churn Prediction</h1>
+
+        <p>
+            Machine Learning Based Customer Churn Analysis
+        </p>
+
+    </header>
+
+
+
+    <!-- ================= DATASET ================= -->
+
+    <section class="dataset-section">
+
+        <h2>Used Dataset</h2>
+
+        <p class="section-description">
+            Sample of the dataset used for training the prediction model
+        </p>
+
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Gender</th>
+                        <th>Senior Citizen</th>
+                        <th>Partner</th>
+                        <th>Dependents</th>
+                        <th>Tenure</th>
+                        <th>Monthly Charges</th>
+                        <th>Total Charges</th>
+                        <th>Churn</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    <tr>
+                        <td>Female</td>
+                        <td>0</td>
+                        <td>Yes</td>
+                        <td>No</td>
+                        <td>1</td>
+                        <td>29.85</td>
+                        <td>29.85</td>
+                        <td>Yes</td>
+                    </tr>
+
+                    <tr>
+                        <td>Male</td>
+                        <td>0</td>
+                        <td>No</td>
+                        <td>No</td>
+                        <td>34</td>
+                        <td>56.95</td>
+                        <td>1889.50</td>
+                        <td>No</td>
+                    </tr>
+
+                    <tr>
+                        <td>Male</td>
+                        <td>0</td>
+                        <td>No</td>
+                        <td>No</td>
+                        <td>2</td>
+                        <td>53.85</td>
+                        <td>108.15</td>
+                        <td>Yes</td>
+                    </tr>
+
+                    <tr>
+                        <td>Male</td>
+                        <td>0</td>
+                        <td>No</td>
+                        <td>Yes</td>
+                        <td>45</td>
+                        <td>42.30</td>
+                        <td>1840.75</td>
+                        <td>No</td>
+                    </tr>
+
+                    <tr>
+                        <td>Female</td>
+                        <td>0</td>
+                        <td>No</td>
+                        <td>No</td>
+                        <td>2</td>
+                        <td>70.70</td>
+                        <td>151.65</td>
+                        <td>Yes</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= MODEL PERFORMANCE ================= -->
+
+    <section class="performance-section">
+
+        <h2>How My Model Performs</h2>
+
+
+        <div class="performance-cards">
+
+
+            <div class="performance-card">
+
+                <h3>Model Accuracy</h3>
+
+                <p class="score">
+                    78.46%
+                </p>
+
+                <span>
+                    Test Accuracy
+                </span>
+
+            </div>
+
+
+            <div class="performance-card">
+
+                <h3>Prediction Type</h3>
+
+                <p class="prediction-type">
+                    Binary
+                </p>
+
+                <span>
+                    Churn / No Churn
+                </span>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= PREDICTION ================= -->
+
+    <section class="prediction-section">
+
+        <h2>Customer Churn Prediction</h2>
+
+        <p class="section-description">
+            Enter the customer's details to predict the possibility of churn.
+        </p>
+
+
+
+        <form action="/predict" method="POST">
+
+
+
+            <!-- ========== CUSTOMER INFORMATION ========== -->
+
+            <div class="form-category">
+
+                <h3>Customer Information</h3>
+
+            </div>
+
+
+            <div class="form-grid">
+
+
+                <!-- Gender -->
+
+                <div class="form-group">
+
+                    <label>Gender</label>
+
+                    <select name="gender">
+
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- Senior Citizen -->
+
+                <div class="form-group">
+
+                    <label>Senior Citizen</label>
+
+                    <select name="SeniorCitizen">
+
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- Partner -->
+
+                <div class="form-group">
+
+                    <label>Partner</label>
+
+                    <select name="Partner">
+
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- Dependents -->
+
+                <div class="form-group">
+
+                    <label>Dependents</label>
+
+                    <select name="Dependents">
+
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- Tenure -->
+
+                <div class="form-group">
+
+                    <label>Tenure (Months)</label>
+
+                    <input
+                        type="number"
+                        name="tenure"
+                        min="0"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ========== SERVICES ========== -->
+
+            <div class="form-category">
+
+                <h3>Services</h3>
+
+            </div>
+
+
+            <div class="form-grid">
+
+
+                <!-- Phone Service -->
+
+                <div class="form-group">
+
+                    <label>Phone Service</label>
+
+                    <select name="PhoneService">
+
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- Multiple Lines -->
+
+                <div class="form-group">
+
+                    <label>Multiple Lines</label>
+
+                    <select name="MultipleLines">
+
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                        <option value="No phone service">
+                            No phone service
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- Internet Service -->
+
+                <div class="form-group">
+
+                    <label>Internet Service</label>
+
+                    <select name="InternetService">
+
+                        <option value="DSL">DSL</option>
+                        <option value="Fiber optic">Fiber optic</option>
+                        <option value="No">No</option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- Online Security -->
+
+                <div class="form-group">
+
+                    <label>Online Security</label>
+
+                    <select name="OnlineSecurity">
+
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                        <option value="No internet service">
+                            No internet service
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- Online Backup -->
+
+                <div class="form-group">
+
+                    <label>Online Backup</label>
+
+                    <select name="OnlineBackup">
+
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                        <option value="No internet service">
+                            No internet service
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- Device Protection -->
+
+                <div class="form-group">
+
+                    <label>Device Protection</label>
+
+                    <select name="DeviceProtection">
+
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                        <option value="No internet service">
+                            No internet service
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- Tech Support -->
+
+                <div class="form-group">
+
+                    <label>Tech Support</label>
+
+                    <select name="TechSupport">
+
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                        <option value="No internet service">
+                            No internet service
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- Streaming TV -->
+
+                <div class="form-group">
+
+                    <label>Streaming TV</label>
+
+                    <select name="StreamingTV">
+
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                        <option value="No internet service">
+                            No internet service
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- Streaming Movies -->
+
+                <div class="form-group">
+
+                    <label>Streaming Movies</label>
+
+                    <select name="StreamingMovies">
+
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                        <option value="No internet service">
+                            No internet service
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ========== BILLING ========== -->
+
+            <div class="form-category">
+
+                <h3>Contract & Billing</h3>
+
+            </div>
+
+
+            <div class="form-grid">
+
+
+                <!-- Contract -->
+
+                <div class="form-group">
+
+                    <label>Contract</label>
+
+                    <select name="Contract">
+
+                        <option value="Month-to-month">
+                            Month-to-month
+                        </option>
+
+                        <option value="One year">
+                            One year
+                        </option>
+
+                        <option value="Two year">
+                            Two year
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- Paperless Billing -->
+
+                <div class="form-group">
+
+                    <label>Paperless Billing</label>
+
+                    <select name="PaperlessBilling">
+
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- Payment Method -->
+
+                <div class="form-group">
+
+                    <label>Payment Method</label>
+
+                    <select name="PaymentMethod">
+
+                        <option value="Electronic check">
+                            Electronic check
+                        </option>
+
+                        <option value="Mailed check">
+                            Mailed check
+                        </option>
+
+                        <option value="Bank transfer (automatic)">
+                            Bank transfer (automatic)
+                        </option>
+
+                        <option value="Credit card (automatic)">
+                            Credit card (automatic)
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- Monthly Charges -->
+
+                <div class="form-group">
+
+                    <label>Monthly Charges</label>
+
+                    <input
+                        type="number"
+                        step="0.01"
+                        name="MonthlyCharges"
+                        min="0"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- Total Charges -->
+
+                <div class="form-group">
+
+                    <label>Total Charges</label>
+
+                    <input
+                        type="number"
+                        step="0.01"
+                        name="TotalCharges"
+                        min="0"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ========== BUTTON ========== -->
+
+            <button
+                type="submit"
+                class="predict-button"
+            >
+                Predict Churn
+            </button>
+
+
+        </form>
+
+
+
+        <!-- ========== RESULT ========== -->
+
+        {% if prediction_text %}
+
+        <div class="prediction-result">
+
+            <h3>Prediction Result</h3>
+
+            <p>{{ prediction_text }}</p>
+
+        </div>
+
+        {% endif %}
+
+
+    </section>
+
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <p>
+            Customer Churn Prediction |
+            Machine Learning Project
+        </p>
+
+    </footer>
+
+
+</div>
+
+</body>
+
+</html>

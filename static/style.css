@@ -1,0 +1,291 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f6f9;
+    color: #222;
+}
+
+/* Main page */
+
+.main-container {
+    width: 92%;
+    max-width: 1200px;
+    margin: 30px auto;
+}
+
+
+/* Header */
+
+.page-header {
+    text-align: center;
+    background: white;
+    padding: 28px;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+    margin-bottom: 25px;
+}
+
+.page-header h1 {
+    margin: 0;
+    color: #0077cc;
+    font-size: 32px;
+}
+
+.page-header p {
+    margin: 10px 0 0;
+    color: #666;
+    font-size: 16px;
+}
+
+
+/* Common sections */
+
+.dataset-section,
+.performance-section,
+.prediction-section {
+    background: white;
+    border-radius: 12px;
+    padding: 28px;
+    margin-bottom: 25px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+.dataset-section h2,
+.performance-section h2,
+.prediction-section h2 {
+    text-align: center;
+    color: #0077cc;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.section-description {
+    text-align: center;
+    color: #666;
+    margin-bottom: 22px;
+}
+
+
+/* Dataset table */
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 850px;
+}
+
+th {
+    background: #0077cc;
+    color: white;
+    padding: 12px 10px;
+    font-size: 14px;
+}
+
+td {
+    padding: 11px 10px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    font-size: 14px;
+}
+
+tbody tr:hover {
+    background: #f2f8fd;
+}
+
+
+/* Model performance */
+
+.performance-cards {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 25px;
+}
+
+.performance-card {
+    width: 250px;
+    padding: 22px;
+    text-align: center;
+    border: 2px solid #0077cc;
+    border-radius: 10px;
+    background: #f8fbff;
+}
+
+.performance-card h3 {
+    margin: 0 0 12px;
+    color: #333;
+}
+
+.performance-card .score {
+    margin: 0;
+    font-size: 30px;
+    font-weight: bold;
+    color: #0077cc;
+}
+
+.performance-card .prediction-type {
+    margin: 0;
+    font-size: 30px;
+    font-weight: bold;
+    color: #0077cc;
+}
+
+.performance-card span {
+    display: block;
+    margin-top: 8px;
+    color: #777;
+    font-size: 14px;
+}
+
+
+/* Form category headings */
+
+.form-category {
+    margin-top: 28px;
+    margin-bottom: 18px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #e4edf5;
+}
+
+.form-category h3 {
+    margin: 0;
+    color: #0077cc;
+    font-size: 19px;
+}
+
+
+/* Form grid */
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px 25px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-weight: bold;
+    margin-bottom: 7px;
+    color: #333;
+    font-size: 14px;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 11px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    background: white;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #0077cc;
+    box-shadow: 0 0 4px rgba(0, 119, 204, 0.25);
+}
+
+
+/* Predict button */
+
+.predict-button {
+    display: block;
+    margin: 35px auto 10px;
+    padding: 14px 50px;
+    border: none;
+    border-radius: 7px;
+    background: #0077cc;
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.predict-button:hover {
+    background: #005fa3;
+    transform: translateY(-1px);
+}
+
+
+/* Prediction result */
+
+.prediction-result {
+    margin-top: 28px;
+    padding: 22px;
+    text-align: center;
+    border-radius: 10px;
+    background: #f1f8ff;
+    border: 2px solid #0077cc;
+}
+
+.prediction-result h3 {
+    margin: 0 0 10px;
+    color: #0077cc;
+}
+
+.prediction-result p {
+    margin: 0;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+
+/* Footer */
+
+footer {
+    text-align: center;
+    color: #777;
+    padding: 10px 0 25px;
+    font-size: 14px;
+}
+
+
+/* Mobile */
+
+@media (max-width: 700px) {
+
+    .main-container {
+        width: 95%;
+        margin: 15px auto;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .performance-cards {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .performance-card {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .page-header h1 {
+        font-size: 25px;
+    }
+
+    .dataset-section,
+    .performance-section,
+    .prediction-section {
+        padding: 20px;
+    }
+}
